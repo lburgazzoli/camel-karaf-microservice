@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.lburgazzoli</groupId>
   <artifactId>karaf-camel-microservice</artifactId>
-  <version>2.19.0-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <name>karaf-camel-microservice</name>
   <packaging>bundle</packaging>
 
@@ -39,14 +39,14 @@
     <version.maven.javadoc.plugin>2.10.4</version.maven.javadoc.plugin>
     <version.maven.build.helper.plugin>1.10</version.maven.build.helper.plugin>
     <version.maven.install.plugin>2.5.2</version.maven.install.plugin>
-    <version.fabric8.maven.plugin>3.1.75</version.fabric8.maven.plugin>
+    <version.fabric8.maven.plugin>3.1.80</version.fabric8.maven.plugin>
 
     <!-- OSGi -->
     <version.maven.bundle.plugin>3.2.0</version.maven.bundle.plugin>
     <version.depends.maven.plugin>1.3.1</version.depends.maven.plugin>
 
     <!-- deps -->
-    <version.camel>2.19.0-SNAPSHOT</version.camel>
+    <version.camel>2.18.0</version.camel>
     <version.commons.lang3>3.5</version.commons.lang3>     
     <version.karaf>4.0.7</version.karaf>
     <version.fabric8>2.2.169</version.fabric8>  
@@ -229,6 +229,10 @@
         <startupBundles>
           <bundle>mvn:${project.groupId}/${project.artifactId}/${project.version};start-level=80</bundle>
         </startupBundles>
+        <blacklistedBundles>
+          <bundle>camel-karaf-commands;url="mvn:org.apache.camel.karaf/camel-karaf-commands/${version.camel}"</bundle>
+          <bundle>camel-karaf-commands-catalog;url="mvn:org.apache.camel.karaf/camel-karaf-commands/${version.camel}"</bundle>
+        </blacklistedBundles>
         <libraries>
           <library>mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.jaxp-api-1.4/${version.servicemix.specs};type:=endorsed;export:=true</library>
           <library>mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.jaxb-api-2.2/${version.servicemix.specs};type:=endorsed;export:=true</library>
@@ -253,7 +257,7 @@
   <profile>
     <id>fabric8</id>
     <activation>
-      <activeByDefault>false</activeByDefault>
+      <activeByDefault>true</activeByDefault>
     </activation>
     <build>
       <plugins>  
