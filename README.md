@@ -1,1 +1,1 @@
-# karafcamel-microservice
+camel-karaf-microservice
